@@ -2,7 +2,7 @@
 
 You can introduce a sinusoidal source into a circuit, with $V = V_0\sin\omega t$. The Fourier series says that you can decompose any signal into the sum of sine waves. The response to single sine waves is called AC theory. 
 
-<!--Fig 1-->
+![An LC Circuit with a Sinusoidal Source.](Circuit-Diagram.png)
 
 **KVL:** $V_0\sin(\omega t) - V_R - V_L = 0$  
 **KCL:** One loop therefore one current $i$
@@ -53,7 +53,7 @@ $$ \frac{V_0}{L} = -I_0\sin(\phi) + \frac{R}{L}I_0\cos(\phi) $$
 
 Now, using trigonometric identities you can find a nicer expression for substitution, using our know value for $\phi$.
 
-<!--fig 2-->
+![Diagram reprisenting $\tan\phi$ as a triangle.](triangle.png)
 
 $$ \sin\phi = \frac{-\omega L}{\sqrt{R^2 + \omega^2 L ^2}} $$
 
