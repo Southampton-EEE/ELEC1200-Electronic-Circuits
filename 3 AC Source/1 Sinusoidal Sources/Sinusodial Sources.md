@@ -1,5 +1,7 @@
 # Sinusoidal Sources
 
+## Lecture 1
+
 You can introduce a sinusoidal source into a circuit, with $V = V_0\sin\omega t$. The Fourier series says that you can decompose any signal into the sum of sine waves. The response to single sine waves is called AC theory. 
 
 ![An LC Circuit with a Sinusoidal Source.](Circuit-Diagram.png)
@@ -72,3 +74,82 @@ $$ I_0 = \frac{V_0}{\sqrt{R^2 + \omega^2 L ^2}} $$
 If the guess is correct then our equations for $I_0$ and $\phi$ are correct. So finally we have to verify our solution by a final substitution back into $i(t)$
 
 $$ i(t) = \frac{V_0}{\sqrt{R^2 + \omega^2L^2}}\sin\bigg(\omega t - \tan^{-1} \big(\frac{\omega L}{R}\big)\bigg) $$
+
+Then, if we add a phase shift 
+
+$$ i(t) = \frac{V_0}{\sqrt{R^2 + \omega^2L^2}}\sin\bigg(\omega t - \tan^{-1} \big(\frac{\omega L}{R} + \phi\big)\bigg) $$
+
+## Lecture 2
+
+This is not a very good method as it takes a very long time. A better solution involves complex numbers.
+
+It is not difficult to reason that the following is also a solution.
+
+$$ i(t) = \frac{V_0}{\sqrt{R^2 + \omega^2L^2}}\cos\bigg(\omega t - \tan^{-1} \big(\frac{\omega L}{R}\big)\bigg) $$
+
+And also that you can add a coefficient $\alpha$ to the source for the sine wave.
+
+$$ i(t) = \alpha\frac{V_0}{\sqrt{R^2 + \omega^2L^2}}\sin\bigg(\omega t - \tan^{-1} \big(\frac{\omega L}{R}\big)\bigg) $$
+
+And when you add them you can get 
+
+$$ i(t) = \alpha\frac{V_0}{\sqrt{R^2 + \omega^2L^2}}\sin\bigg(\omega t - \tan^{-1} \big(\frac{\omega L}{R}\big)\bigg) + \frac{V_0}{\sqrt{R^2 + \omega^2L^2}}\cos\bigg(\omega t - \tan^{-1} \big(\frac{\omega L}{R}\big)\bigg) $$
+
+Which is the equation for a circuit with a source
+
+$$ V_0\sin(\omega t) + V_0\cos(\omega t) $$
+
+This is the case because the differential equation is linear, so if you add two solutions together you will get another solution.
+
+Now, we make the decision to make $\alpha = j = \sqrt{-1}$.
+
+$$ i(t) = j\frac{V_0}{\sqrt{R^2 + \omega^2L^2}}\sin\bigg(\omega t - \tan^{-1} \big(\frac{\omega L}{R}\big)\bigg) + \frac{V_0}{\sqrt{R^2 + \omega^2L^2}}\cos\bigg(\omega t - \tan^{-1} \big(\frac{\omega L}{R}\big)\bigg) $$
+
+This is not a circuit nor a model of one, as it is impossible to generate a complex voltage. This is just a mathematical object. But, this mathematical circuit is useful because it contains two copies of physical circuits. 
+
+If you take the real part of the voltage source of the mathematical circuit you get the voltage source of the cosine circuit. If you take the real part of the solution $i(t)$ for the mathematical circuit you get the solution $i(t)$ of the cosine circuit.
+
+$$ v_{cosine}(t) = \Re(v_{math}(t)) $$
+$$ i_{cosine}(t) = \Re(i_{math}(t)) $$
+
+
+If you take the imaginary part of the voltage source of the mathematical circuit you get the voltage source of the sine circuit. If you take the imaginary part of the solution $i(t) $ of the mathematical circuit you get the solution $i(t)$ for the sine circuit.
+
+$$ v_{sine}(t) = \Im(v_{math}(t)) $$
+$$ i_{sine}(t) = \Im(i_{math}(t)) $$
+
+Why have we done this though? It is now possible to write the voltage in the mathematical circuit as
+
+$$ V_0\cos(\omega t) + j V_0 \sin(\omega t) = V_0e^{j\omega t} $$
+
+Which is much easier to write, and much simpler to manipulate, due to the use of exponentials instead of trigonometric functions, which are much simpler to differentiate.
+
+So, doing it quickly
+
+The differential equation for the mathematical circuit
+
+$$ \frac{di}{dt} + \frac{R}{L}i = \frac{1}{L}V_0 e^{j\omega t} $$
+
+Then we guess a solution
+
+$$ i(t) = I_0 e^{j(\omega t + \phi)} $$
+
+The we substitute this guess into the equation, for which we need to find $\frac{di}{dt}$
+
+$$ \frac{di}{dt} = I_0 j \omega e^{j(\omega t + \phi)} $$
+
+Then we substitute
+
+$$ I_0 j \omega e^{j(\omega t + \phi)} + \frac{R}{L} I_0 e^{j(\omega t + \phi)} = \frac{1}{L}V_0 e^{j\omega t} $$
+
+Then divide though by $e^{j\omega t}$
+
+$$ I_0 j \omega e^{j\phi} + \frac{R}{L} I_0 e^{j\phi} = \frac{1}{L}V_0 $$
+
+because $e^{j(\omega t + \phi)} = e^{j\omega t}e^{j\phi}$
+
+Then you can find
+
+$$I_0 e^{j\phi} = \frac{V_0}{j\omega L + R} $$
+
+Which tells you what $I_0$ and $\phi$ are. Then all that is left to do is solve this equation. Which you can find very easily. As you can see this was a very quick way of finding the solution compared to the previous method.
